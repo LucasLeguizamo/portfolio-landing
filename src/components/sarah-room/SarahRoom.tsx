@@ -8,6 +8,7 @@ import { GoldButterfly } from "@/components/sarah-room/gold-butterfly"
 import { SarahFigure } from "@/components/sarah-room/sarah-figure"
 import { applySarahCamera, sceneBridge } from "@/components/sarah-room/scene-bridge"
 import { Studio } from "@/components/sarah-room/studio"
+import { TypingHands } from "@/components/sarah-room/typing-hands"
 import { createSarahMotion, stepSarahMotion, type SarahMotion } from "@/components/sarah-sdf/sarah-motion"
 
 function Director({
@@ -123,6 +124,7 @@ export function SarahRoom({
         <Lights />
         <Studio />
         <SarahFigure />
+        <TypingHands />
         <GoldButterfly />
       </Canvas>
       <button type="button" className="sarah-toggle" onClick={() => setChoice(!playing)}>
