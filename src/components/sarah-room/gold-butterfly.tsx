@@ -11,12 +11,20 @@ export function GoldButterfly() {
   const group = useRef<Group>(null)
   const left = useRef<Mesh>(null)
   const right = useRef<Mesh>(null)
+  const prev = useRef<[number, number, number]>([-0.48, 0.93, 0.28])
 
   useFrame(() => {
     const params = sceneBridge.params
     if (!params || !group.current || !left.current || !right.current) return
     const [x, y, z, flap] = params.fly
     group.current.position.set(x, y, z)
+    const [px, py, pz] = prev.current
+    const dx = x - px
+    const dz = z - pz
+    if (Math.hypot(dx, y - py, dz) > 0.0004) {
+      group.current.rotation.y = Math.atan2(dx, dz)
+    }
+    prev.current = [x, y, z]
     const angle = 0.4 + flap * 0.9
     left.current.rotation.y = angle
     right.current.rotation.y = -angle
